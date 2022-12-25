@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Extend the Python syntax highlighter with some custom lexers and styles."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
-repository = "https://github.com/Josef-Friedrich/jf-pygments"
+repository = "https://github.com/Josef-Friedrich/jf_pygments"
 license = "GPL-3.0-only"
 # https://pypi.org/classifiers/
 classifiers = [
@@ -36,4 +36,4 @@ white = "jf_pygments:WhiteStyle"
 baldr = "jf_pygments:BaldrStyle"
 
 [pygments.lexers]
-yourlexer = "jf_pygments:BaldrSqlLexer"
+baldrsql = "jf_pygments:BaldrSqlLexer"
