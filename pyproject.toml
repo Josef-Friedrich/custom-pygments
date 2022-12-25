@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jf_pygments"
-version = "0.2.0"
+version = "0.3.0"
 description = "Extend the Python syntax highlighter with some custom lexers and styles."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
@@ -29,7 +29,6 @@ types-pygments = "^2.13.1.1"
 requires = ["poetry>=1.2.0b2"]
 build-backend = "poetry.masonry.api"
 
-# https://github.com/python-poetry/poetry/issues/927#issuecomment-1232254538
 [tool.poetry.plugins]
 
 [tool.poetry.plugins."pygments.styles"]

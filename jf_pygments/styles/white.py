@@ -4,6 +4,7 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class WhiteStyle(Style):
+    """All fonts are changed to white."""
 
     styles = {
         Whitespace:                "#FFFFFF",

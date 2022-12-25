@@ -3,12 +3,12 @@
 import re
 from pygments.lexers.sql import SqlLexer
 from pygments.lexer import inherit, bygroups
-from pygments.token import Name, Keyword, Text, Token, Whitespace
+from pygments.token import Name, Keyword, Whitespace
 
 class BaldrSqlLexer(SqlLexer):
-    name = 'SQL for school'
+    name = 'SQL for Baldr project'
 
-    aliases = ['sql']
+    aliases = ['baldrsql']
 
     flags = re.DOTALL
 

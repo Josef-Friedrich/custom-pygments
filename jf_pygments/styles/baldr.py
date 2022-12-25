@@ -4,6 +4,7 @@ from pygments.token import Keyword, Name, Comment, String, Error, \
 
 
 class BaldrStyle(Style):
+    """Style for the Baldr project."""
 
     styles = {
         Whitespace:                "#bbbbbb",
