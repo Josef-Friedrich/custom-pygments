@@ -1,5 +1,5 @@
 import re
-from pygments.lexers.sql import SqlLexer
+from pygments.lexers import SqlLexer
 from pygments.lexer import inherit, bygroups
 from pygments.token import Name, Keyword, Whitespace
 

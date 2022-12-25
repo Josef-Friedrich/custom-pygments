@@ -12,11 +12,11 @@ class TableSchemaLexer(RegexLexer):
 
     tokens = {
         "root": [
-            (r"(\w+)(\()", bygroups(Name.Class, Punctuation), "table"),
+            (r"(\w+)(\s*)(\()(\s*)", bygroups(Name.Class, Whitespace, Punctuation, Whitespace), "table"),
         ],
         "table": [
             (
-                r"(\w+)(:)( )",
+                r"(\w+)(:)(\s*)?",
                 bygroups(Name.Attribute, Punctuation, Whitespace),
                 "attribute",
             ),
@@ -24,12 +24,13 @@ class TableSchemaLexer(RegexLexer):
         ],
         "attribute": [
             (
-                r"(\w+)(:)( )",
+                r"(\w+)(:)(\s*)?",
                 bygroups(Name.Attribute, Punctuation, Whitespace),
                 "attribute",
             ),
             include("datatypes"),
-            (r"(;)( )?", bygroups(Punctuation, Whitespace), "attribute"),
+            (r"(;)(\s*)?", bygroups(Punctuation, Whitespace), "attribute"),
+            (r"\s*\)", Punctuation, "table")
         ],
         "datatypes": [
             (
