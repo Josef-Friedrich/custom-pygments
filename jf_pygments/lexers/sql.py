@@ -1,14 +1,13 @@
-# pygmentize -l ./lexer.py:SqlLexer -x test.sql
-
 import re
 from pygments.lexers.sql import SqlLexer
 from pygments.lexer import inherit, bygroups
 from pygments.token import Name, Keyword, Whitespace
 
-class BaldrSqlLexer(SqlLexer):
-    name = 'SQL for Baldr project'
 
-    aliases = ['baldrsql']
+class BaldrSqlLexer(SqlLexer):
+    name = "SQL for Baldr project"
+
+    aliases = ["baldr-sql"]
 
     flags = re.DOTALL
 
@@ -23,13 +22,14 @@ class BaldrSqlLexer(SqlLexer):
     #         if table_match.group(3):
     #                 yield 323, Name.Class, table_match.group(3)
 
-
-
     tokens = {
-        'root': [
-            (r'[a-z_][\w]*(?=\.[a-z_][\w]*)', Name.Class),
-            (r'(?<=\w\.)[a-z_][\w]*', Name.Attribute),
-            (r'(\w+)(\s+)(AS)(\s+)(\w+)', bygroups(Name.Class, Whitespace, Keyword, Whitespace,  Name.Class)),
+        "root": [
+            (r"[a-z_][\w]*(?=\.[a-z_][\w]*)", Name.Class),
+            (r"(?<=\w\.)[a-z_][\w]*", Name.Attribute),
+            (
+                r"(\w+)(\s+)(AS)(\s+)(\w+)",
+                bygroups(Name.Class, Whitespace, Keyword, Whitespace, Name.Class),
+            ),
             # (r'(?<=FROM).*?(?=(WHERE|ORDER BY|$))', get_tables),
             inherit,
         ],

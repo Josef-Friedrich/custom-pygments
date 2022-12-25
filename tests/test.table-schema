@@ -1,0 +1,5 @@
+Person(pID: Ganzzahl; vorname: Text; nachname: Text; alter: Ganzzahl)
+
+Instrument(iID: Ganzzahl; name: Text; wert: Zahl)
+
+spielt(pID: Ganzzahl; iID: Ganzzahl; dauer: Zahl; qualität: Zahl)

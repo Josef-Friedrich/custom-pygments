@@ -36,4 +36,5 @@ white = "jf_pygments:WhiteStyle"
 baldr = "jf_pygments:BaldrStyle"
 
 [tool.poetry.plugins."pygments.lexers"]
-baldrsql = "jf_pygments:BaldrSqlLexer"
+"baldr-sql" = "jf_pygments:BaldrSqlLexer"
+"table-schema" = "jf_pygments:TableSchemaLexer"
