@@ -25,3 +25,7 @@ https://python-poetry.org/docs/pyproject/#plugins
 
     [tool.poetry.plugins."pygments.lexers"]
     baldrsql = "jf_pygments:BaldrSqlLexer"
+
+Check if the plugin is picked up by pygments::
+
+    pygmentize -L | grep baldr
