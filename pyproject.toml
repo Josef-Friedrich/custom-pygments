@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "custom_pygments"
+name = "jf_pygments"
 version = "0.1.0"
 description = "Extend the Python syntax highlighter with some custom lexers and styles."
 authors = ["Josef Friedrich <josef@friedrich.rocks>"]
 readme = "README.rst"
-repository = "https://github.com/Josef-Friedrich/custom-pygments"
+repository = "https://github.com/Josef-Friedrich/jf-pygments"
 license = "GPL-3.0-only"
 # https://pypi.org/classifiers/
 classifiers = [
@@ -31,5 +31,9 @@ types-pygments = "^2.13.1.1"
 requires = ["poetry>=1.2.0b2"]
 build-backend = "poetry.masonry.api"
 
-[tool.poetry.scripts]
-"python-project-boilerplate.py" = "python_project_boilerplate:print_version"
+[pygments.styles]
+white = "jf_pygments:WhiteStyle"
+baldr = "jf_pygments:BaldrStyle"
+
+[pygments.lexers]
+yourlexer = "jf_pygments:BaldrSqlLexer"
