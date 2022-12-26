@@ -24,7 +24,7 @@ class BaldrSqlLexer(SqlLexer):
 
     tokens = {
         "root": [
-            (r"FROM", Keyword, combined( "table-name-simple", "table-name-as")),
+            (r"(FROM)(\s+)", bygroups(Keyword, Whitespace), "table-name-simple"),
             (r"[a-z_][\w]*(?=\.[a-z_][\w]*)", Name.Class),
             (r"(?<=\w\.)[a-z_][\w]*", Name.Attribute),
             (
@@ -48,14 +48,13 @@ class BaldrSqlLexer(SqlLexer):
             default("root")
         ],
         "table-name-simple": [
-            (r"\s+", Whitespace),
             (
-                r"(\w+)",
-                Name.Class,
+                r"(\w+)(\s*)",
+                bygroups(Name.Class, Whitespace),
             ),
-            (r",", Punctuation, combined("table-name-as", "table-name-simple")),
+            (r"(,)(\s*)", bygroups(Punctuation, Whitespace), "table-name-simple"),
             (r"", Text, '#pop'),
-            default("root")
+            # default("root")
         ],
     }
 

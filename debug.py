@@ -22,4 +22,4 @@ def debug(code: str, lexer: str):
 
 debug("SELECT * FROM Person AS p WHERE lol = 3", "baldr-sql")
 
-debug("SELECT * FROM Person WHERE lol = 3", "baldr-sql")
+debug("SELECT * FROM Person , Lol WHERE lol = 3", "baldr-sql")
