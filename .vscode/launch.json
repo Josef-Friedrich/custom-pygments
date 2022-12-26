@@ -14,11 +14,11 @@
       "justMyCode": true
     },
     {
-      "name": "Python: Specified File",
+      "name": "Python: debug.py",
       "type": "python",
       "request": "launch",
-      "program": "python_project_boilerplate/debug.py",
-      "justMyCode": true
+      "program": "debug.py",
+      "justMyCode": false
     }
   ]
 }

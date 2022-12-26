@@ -1,0 +1,1 @@
+SELECT vorname FROM Person

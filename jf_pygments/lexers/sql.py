@@ -1,7 +1,7 @@
 import re
 from pygments.lexers import SqlLexer
-from pygments.lexer import inherit, bygroups
-from pygments.token import Name, Keyword, Whitespace
+from pygments.lexer import RegexLexer, inherit, bygroups
+from pygments.token import Name, Keyword, Whitespace, Punctuation, Text
 
 
 class BaldrSqlLexer(SqlLexer):
@@ -24,6 +24,7 @@ class BaldrSqlLexer(SqlLexer):
 
     tokens = {
         "root": [
+            (r"FROM", Keyword, "table"),
             (r"[a-z_][\w]*(?=\.[a-z_][\w]*)", Name.Class),
             (r"(?<=\w\.)[a-z_][\w]*", Name.Attribute),
             (
@@ -36,4 +37,21 @@ class BaldrSqlLexer(SqlLexer):
         # 'tablelist': [
         #     (r'(\w)( AS (\w))?,?', bygroups(Name.Class, Text, Name.Class))
         # ]
+        "table": [
+            (
+                r"(\w+)(\s+)(AS)(\s+)(\w+)",
+                bygroups(Name.Class, Whitespace, Keyword, Whitespace, Name.Class),
+            ),
+            (
+                r"(\s*)(\w+)",
+                bygroups(Whitespace, Name.Class),
+            ),
+            (r",", Punctuation, "table"),
+            (r"", Text, "#pop"),
+        ],
     }
+
+    def get_tokens_unprocessed(self, text: str):
+        for item in RegexLexer.get_tokens_unprocessed(self, text):
+            # print(item)
+            yield item

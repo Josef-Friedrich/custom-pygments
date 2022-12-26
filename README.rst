@@ -29,3 +29,8 @@ https://python-poetry.org/docs/pyproject/#plugins
 Check if the plugin is picked up by pygments::
 
     pygmentize -L | grep baldr
+
+
+testing::
+
+    pip install --user . ; ./test.sh
