@@ -1,6 +1,6 @@
 import re
 from pygments.lexers import SqlLexer
-from pygments.lexer import RegexLexer, inherit, bygroups
+from pygments.lexer import RegexLexer, inherit, bygroups, combined, default
 from pygments.token import Name, Keyword, Whitespace, Punctuation, Text
 
 
@@ -24,7 +24,7 @@ class BaldrSqlLexer(SqlLexer):
 
     tokens = {
         "root": [
-            (r"FROM", Keyword, "table"),
+            (r"FROM", Keyword, combined( "table-name-simple", "table-name-as")),
             (r"[a-z_][\w]*(?=\.[a-z_][\w]*)", Name.Class),
             (r"(?<=\w\.)[a-z_][\w]*", Name.Attribute),
             (
@@ -37,17 +37,25 @@ class BaldrSqlLexer(SqlLexer):
         # 'tablelist': [
         #     (r'(\w)( AS (\w))?,?', bygroups(Name.Class, Text, Name.Class))
         # ]
-        "table": [
+        "table-name-as": [
+            (r"\s+", Whitespace),
             (
                 r"(\w+)(\s+)(AS)(\s+)(\w+)",
                 bygroups(Name.Class, Whitespace, Keyword, Whitespace, Name.Class),
             ),
+            (r",", Punctuation, combined("table-name-as", "table-name-simple")),
+            (r"", Text, '#pop'),
+            default("root")
+        ],
+        "table-name-simple": [
+            (r"\s+", Whitespace),
             (
-                r"(\s*)(\w+)",
-                bygroups(Whitespace, Name.Class),
+                r"(\w+)",
+                Name.Class,
             ),
-            (r",", Punctuation, "table"),
-            (r"", Text, "#pop"),
+            (r",", Punctuation, combined("table-name-as", "table-name-simple")),
+            (r"", Text, '#pop'),
+            default("root")
         ],
     }
 

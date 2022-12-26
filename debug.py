@@ -1,13 +1,25 @@
-import pygments
-from pygments.lexers import get_all_lexers
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import get_formatter_by_name
 
 
-for lexer in get_all_lexers():
-    print(lexer)
+def debug(code: str, lexer: str):
+    print(
+        highlight(
+            code,
+            get_lexer_by_name(lexer),
+            get_formatter_by_name("tokens"),
+        ).decode("utf-8")
+    )
+    print(
+        highlight(
+            code,
+            get_lexer_by_name(lexer),
+            get_formatter_by_name("terminal256"),
+        )
+    )
 
-from jf_pygments.lexers.sql import BaldrSqlLexer
 
+debug("SELECT * FROM Person AS p WHERE lol = 3", "baldr-sql")
 
-
-for token in pygments.lex("SELECT * FROM Person", BaldrSqlLexer()):
-    print(token)
+debug("SELECT * FROM Person WHERE lol = 3", "baldr-sql")
